@@ -1,0 +1,27 @@
+﻿@model FinalProject.Models.Package
+@{
+    ViewBag.Title = "CategoryForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Package Info</h2>
+@using (Html.BeginForm("Save", "Packages"))
+{
+    <div class="form-group">
+        @Html.LabelFor(p => p.Destination)
+        @Html.TextBoxFor(p => p.Destination, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Destination)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Price)
+        @Html.TextBoxFor(p => p.Price, new { @type="number", @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Destination)
+    </div>
+    @Html.HiddenFor(c => c.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-default">Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

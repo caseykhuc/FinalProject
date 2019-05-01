@@ -1,0 +1,28 @@
+﻿@model FinalProject.Models.Customer
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer Info</h2>
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.Email</td>
+            <td>@Model.Phone</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Customers", new { Id = Model.Id }, new { @class = "btn-link" })
+            </td>
+        </tr>
+    </tbody>
+</table>

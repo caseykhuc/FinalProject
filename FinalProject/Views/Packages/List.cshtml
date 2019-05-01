@@ -1,0 +1,39 @@
+﻿@model IEnumerable<FinalProject.Models.Package>
+
+@{
+    ViewBag.Title = "Packages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Package</h2>
+<p>
+    @Html.ActionLink("New Package", "New", "Packages", null, new { @class = "btn btn-primary" })
+</p>
+@if (!Model.Any())
+{
+    <p>We don't have any packages yet.</p>
+}
+else
+{
+    <table id="packages" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Price</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var package in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(package.Destination, "Edit", "Packages", new { id = package.Id }, null)
+                    </td>
+                    <td>@package.Price</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Packages", new { id = package.Id }, new { @class = "btn-link" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

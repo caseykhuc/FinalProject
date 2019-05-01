@@ -1,0 +1,32 @@
+﻿@model IEnumerable<FinalProject.Models.Package>
+
+@{
+    ViewBag.Title = "Packages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Package</h2>
+@if (!Model.Any())
+{
+    <p>We don't have any packages yet.</p>
+}
+else
+{
+    <table id="packages" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var package in Model)
+            {
+            <tr>
+                <td>@package.Destination</td>
+                <td>@package.Price</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<FinalProject.Models.Customer>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer List</h2>
+@if (!Model.Any())
+{
+    <p>No customers</p>
+}
+else
+{
+    <table id="customers" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@customer.Name</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.Phone</td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", "Customers", new { id = customer.Id }, new { @class = "btn-link" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

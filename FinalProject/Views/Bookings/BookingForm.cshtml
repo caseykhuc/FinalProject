@@ -1,0 +1,28 @@
+﻿@model FinalProject.Models.BookingViewModel
+@{
+    ViewBag.Title = "BookingForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Booking Form</h2>
+@using (Html.BeginForm("Save", "Bookings"))
+{
+<div class="form-group">
+    @Html.LabelFor(p => p.PackageId)
+    @Html.DropDownListFor(p => p.PackageId, new SelectList(Model.Packages, "Id", "Destination"), "Select Destination", new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.PackageId)
+</div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Date)
+        @Html.TextBoxFor(p => p.Date, "{0:dd-MM-yyyy}", new { @type = "date", @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Date)
+    </div>
+    @Html.HiddenFor(c => c.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-default">Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

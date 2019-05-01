@@ -1,0 +1,53 @@
+﻿@model IEnumerable<FinalProject.Models.Booking>
+
+@{
+    ViewBag.Title = "Bookings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Booking List</h2>
+<td>
+    @Html.ActionLink("New Booking", "New", "Bookings", null, new { @class = "btn btn-primary" })
+</td>
+@if (!Model.Any())
+{
+    <p>No any bookings</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Customer Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Travel Date</th>
+                <th>Destination</th>
+                <th>Price</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model)
+            {
+            <tr>
+                <td>@booking.Id</td>
+                <td>@booking.Customer.Name</td>
+                <td>@booking.Customer.Email</td>
+                <td>@booking.Customer.Phone</td>
+                <td>
+                    @Html.ActionLink(booking.Date.ToLongDateString(), "Edit", "Bookings", new { id = booking.Id }, new { @class = "btn-link" })
+                </td>
+                <td>
+                    @Html.ActionLink(booking.Package.Destination, "Edit", "Bookings", new { id = booking.Id }, new { @class = "btn-link" })
+                </td>
+                <td>@booking.Package.Price</td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", "Bookings", new { id = booking.Id }, new { @class = "btn-link" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
